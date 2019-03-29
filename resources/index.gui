@@ -1,37 +1,80 @@
 <svg class="background">
+  
+  <mask id="mask">
+    <!-- top left -->
+    <arc class="arc top-left" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin top-left" start-angle="0" sweep-angle="360" />
+    <!-- top middle -->
+    <arc class="arc top-middle" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin top-middle" start-angle="0" sweep-angle="360" />
+    <!-- top right -->
+    <arc id="arc-battery" class="arc top-right" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin top-right" start-angle="0" sweep-angle="360" />
+
+    <!-- center left -->
+    <arc class="arc center-left" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin center-left" start-angle="0" sweep-angle="360" />
+    <!-- center middle -->
+    <arc id="arc-hours" class="arc center-middle" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin center-middle" start-angle="0" sweep-angle="360" />
+    <!-- center right -->
+    <arc id="arc-minutes" class="arc center-right" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin center-right" start-angle="0" sweep-angle="360" />
+    
+    <!-- bottom left -->
+    <arc class="arc bottom-left" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin bottom-left" start-angle="0" sweep-angle="360" />
+    <!-- bottom middle -->
+    <arc class="arc bottom-middle" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin bottom-middle" start-angle="0" sweep-angle="360" />
+    <!-- bottom right -->
+    <arc class="arc bottom-right" start-angle="0" sweep-angle="360" />
+    <arc class="arc-thin bottom-right" start-angle="0" sweep-angle="360" />
+
+  </mask>
+
+  <svg mask="#mask" width="100%" height="100%">
+    <gradientRect x="0" y="0" width="100%" height="100%"
+      gradient-type="bilinear"
+      gradient-x1="30" gradient-y1="30"
+      gradient-x2="100%-60" gradient-y2="100%-60"
+      gradient-color1="cyan"
+      gradient-color2="white"
+      gradient-color3="magenta"
+      gradient-color4="green" />
+  </svg>
+
   <section id="row-top">
-    <section class="circle cell-left">
-      <arc id="arc-hours" class="arc" fill="purple" start-angle="0" sweep-angle="360" />
-      <text class="time time-hours" id="hour" />
+    <section class="cell cell-left">
+      
     </section>
-    <section class="circle cell-middle">
-      <arc id="arc-minutes" class="arc" fill="indigo" start-angle="0" sweep-angle="360" />
-      <text class="time time-minutes" id="minutes" />
+    <section class="cell cell-middle">
+      
     </section>
-    <section class="circle cell-right">
-      <arc id="arc-battery" class="arc" start-angle="0" sweep-angle="360" />
+    <section class="cell cell-right">
+      <text id="text-battery" />
     </section>
   </section>
+
   <section id="row-middle">
-    <section class="circle cell-left">
-      <arc class="arc" fill="purple" start-angle="0" sweep-angle="360" />
+    <section class="cell cell-left">
+      
     </section>
-    <section class="circle cell-middle">
-      <arc class="arc" fill="indigo" start-angle="0" sweep-angle="360" />
+    <section class="cell cell-middle">
+      <text class="time-hours" id="hour-12" />
+      <text class="time-hours" id="hour-24" />
     </section>
-    <section class="circle cell-right">
-      <arc class="arc" start-angle="0" sweep-angle="360" />
+    <section class="cell cell-right">
+      <text class="time-minutes" id="minutes" />
     </section>
   </section>
+
   <section id="row-bottom">
-    <section class="circle cell-left">
-      <arc class="arc" fill="purple" start-angle="0" sweep-angle="360" />
+    <section class="cell cell-left">
     </section>
-    <section class="circle cell-middle">
-      <arc class="arc" fill="indigo" start-angle="0" sweep-angle="360" />
+    <section class="cell cell-middle">
     </section>
-    <section class="circle cell-right">
-      <arc class="arc" start-angle="0" sweep-angle="360" />
+    <section class="cell cell-right">
     </section>
   </section>
 </svg>

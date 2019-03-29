@@ -1,19 +1,64 @@
-.time {
-  font-size: 48;
-  font-family: Colfax;
-  /* text-length should be (font-size / 2.5)  */
-  text-length: 20;
-  text-anchor: middle;
-  x: 50%;
-  y: 65%;
-  fill: white;
-}
+/******************************************
+ * The Arc masks
+ */
 
+ /* the main arc that grows with progress */
 .arc {
-  width: 100%; height: 100%; x: 0; y: 0; arc-width: 4;
+  width: 28%;
+  height: 28%;
+  arc-width: 4;
+}
+/* the thinner arc that's always 360 */
+.arc-thin {
+  width: 28%;
+  height: 28%;
+  arc-width: 1;
 }
 
-.circle {
+.top-left {
+  x: 4%;
+  y: 4%;
+}
+.top-middle {
+  x: 36%;
+  y: 4%;
+}
+.top-right {
+  x: 68%;
+  y: 4%;
+} 
+
+.center-left {
+  x: 4%;
+  y: 36%;
+}
+.center-middle {
+  x: 36%;
+  y: 36%;
+}
+.center-right {
+  x: 68%;
+  y: 36%;
+} 
+
+.bottom-left {
+  x: 4%;
+  y: 68%;
+}
+.bottom-middle {
+  x: 36%;
+  y: 68%;
+}
+.bottom-right {
+  x: 68%;
+  y: 68%;
+} 
+
+/******************************************
+ * grid
+ */
+
+.cell {
   width: 28%;
   height: 28%;
 }
@@ -30,7 +75,6 @@
   x: 0;
   y: 66%;
 }
-
 .cell-left {
   x: 4%;
   y: 4%;
@@ -44,7 +88,44 @@
   y: 4%;
 }
 
-/* specific cells */
-.cell-right .arc {
-  fill:#7898f8
+/******************************************
+ * Cell colors (9 total)
+ */
+
+
+/******************************************
+ * Content
+ */
+
+.time-hours {
+  font-size: 28;
+  font-family: Colfax;
+  text-length: 2;
+  fill: white;
+  x: 50%;
+  text-anchor: middle;
 }
+#hour-12 { y: 36% }
+#hour-24 { y: $+0; }
+
+.time-minutes {
+  font-size: 46;
+  font-family: Colfax;
+  text-length: 2;
+  x: 50%;
+  y: 66%;
+  fill: white;
+  text-anchor: middle;
+}
+
+#text-battery {
+  font-size: 28;
+  font-family: Colfax;
+  text-anchor: middle;
+  text-length: 4;
+  y: 68%;
+  x: 50%;
+  fill: white;
+}
+
+
