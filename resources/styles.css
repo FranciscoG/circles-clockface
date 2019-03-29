@@ -1,26 +1,50 @@
-.defaultText {
-  font-size: 32;
-  font-family: System-Regular;
-  font-weight: regular;
-  text-length: 32;
-}
-
-/* #background {
-  width: 100%;
-  height: 100%;
-  fill: white;
-} */
-
-.background {
-  viewport-fill: red;
-}
-
-#myLabel {
-  font-size: 80;
-  font-family: System-Bold;
-  text-length: 32;
+.time {
+  font-size: 48;
+  font-family: Colfax;
+  /* text-length should be (font-size / 2.5)  */
+  text-length: 20;
   text-anchor: middle;
   x: 50%;
-  y: 50%;
+  y: 65%;
   fill: white;
+}
+
+.arc {
+  width: 100%; height: 100%; x: 0; y: 0; arc-width: 4;
+}
+
+.circle {
+  width: 28%;
+  height: 28%;
+}
+
+#row-top {
+  x: 0;
+  y: 0;
+}
+#row-middle {
+  x: 0;
+  y: 33%;
+}
+#row-bottom {
+  x: 0;
+  y: 66%;
+}
+
+.cell-left {
+  x: 4%;
+  y: 4%;
+}
+.cell-middle {
+  x: $+4%;
+  y: 4%;
+}
+.cell-right {
+  x: $+4%;
+  y: 4%;
+}
+
+/* specific cells */
+.cell-right .arc {
+  fill:#7898f8
 }

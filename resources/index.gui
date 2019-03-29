@@ -1,3 +1,37 @@
 <svg class="background">
-  <text id="myLabel" />
+  <section id="row-top">
+    <section class="circle cell-left">
+      <arc id="arc-hours" class="arc" fill="purple" start-angle="0" sweep-angle="360" />
+      <text class="time time-hours" id="hour" />
+    </section>
+    <section class="circle cell-middle">
+      <arc id="arc-minutes" class="arc" fill="indigo" start-angle="0" sweep-angle="360" />
+      <text class="time time-minutes" id="minutes" />
+    </section>
+    <section class="circle cell-right">
+      <arc id="arc-battery" class="arc" start-angle="0" sweep-angle="360" />
+    </section>
+  </section>
+  <section id="row-middle">
+    <section class="circle cell-left">
+      <arc class="arc" fill="purple" start-angle="0" sweep-angle="360" />
+    </section>
+    <section class="circle cell-middle">
+      <arc class="arc" fill="indigo" start-angle="0" sweep-angle="360" />
+    </section>
+    <section class="circle cell-right">
+      <arc class="arc" start-angle="0" sweep-angle="360" />
+    </section>
+  </section>
+  <section id="row-bottom">
+    <section class="circle cell-left">
+      <arc class="arc" fill="purple" start-angle="0" sweep-angle="360" />
+    </section>
+    <section class="circle cell-middle">
+      <arc class="arc" fill="indigo" start-angle="0" sweep-angle="360" />
+    </section>
+    <section class="circle cell-right">
+      <arc class="arc" start-angle="0" sweep-angle="360" />
+    </section>
+  </section>
 </svg>

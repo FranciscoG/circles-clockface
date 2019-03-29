@@ -5,3 +5,11 @@ export function zeroPad(i) {
   }
   return i;
 }
+
+/**
+ * get arc length based on total number of steps
+ */
+export function calcArc(current, steps) {
+  let angle = (360 / steps) * current;
+  return angle > 360 ? 360 : angle;
+}
