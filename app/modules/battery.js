@@ -3,19 +3,26 @@ import { display } from "display";
 import document from "document";
 import * as util from "../../common/utils";
 
-const batteryArc = document.getElementById('arc-battery');
+// minutes arc and animation
+const batteryContainer = document.getElementById("arc-battery");
+const batteryAnim = batteryContainer.getElementById("animate");
+const batteryArc = batteryContainer.getElementsByTagName("arc")[0];
+
+// separate text element
 const batteryText = document.getElementById('text-battery');
 
-let watchID;
-
 export default function initialize() {
-  setBatteryLevel();
+  if (display.on) {
+    setBatteryLevel();
+    battery.onchange = setBatteryLevel;
+  }
 
   display.addEventListener("change", () => {
     if (display.on) {
-      start();
+      setBatteryLevel();
+      battery.onchange = setBatteryLevel;
     } else {
-      stop();
+      battery.onchange = void(0);
     }
   });
 }
@@ -23,18 +30,9 @@ export default function initialize() {
 function setBatteryLevel() {
   let levelNum = Math.floor(battery.chargeLevel);
   let level = `${levelNum}%`;
-  batteryArc.sweepAngle = util.calcArc(levelNum, 100);
   batteryText.text = level;
-}
-
-function start() {
-  if (!watchID) {
-    setBatteryLevel();
-    watchID = setInterval(setBatteryLevel, 5000);
-  }
-}
-
-function stop() {
-  clearInterval(watchID);
-  watchID = null;
+  
+  batteryArc.sweepAngle = 0;
+  batteryAnim.to = util.calcArc(levelNum, 100);
+  batteryArc.animate("enable");
 }

@@ -1,35 +1,41 @@
 <svg class="background">
   
+  <defs>
+    <symbol id="arcGroup">
+      <arc class="arc" start-angle="0" sweep-angle="360">
+        <animate id="animate" attributeName="sweep-angle" begin="enable" from="0" to="360" dur="2" final="keep" easing="ease-in-out" />
+      </arc>
+      <arc class="arc-thin" start-angle="0" sweep-angle="360" />
+    </symbol>
+  </defs>
+
   <mask id="mask">
     <!-- top left -->
-    <arc class="arc top-left" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin top-left" start-angle="0" sweep-angle="360" />
+    <use class="top-left" href="#arcGroup" />
+    
     <!-- top middle -->
-    <arc class="arc top-middle" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin top-middle" start-angle="0" sweep-angle="360" />
+    <use class="top-middle" href="#arcGroup" />
+    
     <!-- top right -->
-    <arc id="arc-battery" class="arc top-right" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin top-right" start-angle="0" sweep-angle="360" />
+    <use id="arc-battery" class="top-right" href="#arcGroup" />
 
     <!-- center left -->
-    <arc class="arc center-left" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin center-left" start-angle="0" sweep-angle="360" />
+    <use class="center-left" href="#arcGroup" />
+
     <!-- center middle -->
-    <arc id="arc-hours" class="arc center-middle" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin center-middle" start-angle="0" sweep-angle="360" />
+    <use id="arc-hours" class="center-middle" href="#arcGroup" />
+    
     <!-- center right -->
-    <arc id="arc-minutes" class="arc center-right" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin center-right" start-angle="0" sweep-angle="360" />
+    <use id="arc-minutes" class="center-right" href="#arcGroup" />
     
     <!-- bottom left -->
-    <arc class="arc bottom-left" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin bottom-left" start-angle="0" sweep-angle="360" />
+    <use class="bottom-left" href="#arcGroup" />
+
     <!-- bottom middle -->
-    <arc class="arc bottom-middle" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin bottom-middle" start-angle="0" sweep-angle="360" />
+    <use class="bottom-middle" href="#arcGroup" />
+
     <!-- bottom right -->
-    <arc class="arc bottom-right" start-angle="0" sweep-angle="360" />
-    <arc class="arc-thin bottom-right" start-angle="0" sweep-angle="360" />
+    <use class="bottom-right" href="#arcGroup" />
 
   </mask>
 
@@ -46,31 +52,34 @@
 
   <section id="row-top">
     <section class="cell cell-left">
-      
     </section>
     <section class="cell cell-middle">
-      
     </section>
     <section class="cell cell-right">
+      <image x="30" y="20" width="24" height="24" href="icons/stat_batt_open_24px.png" />
       <text id="text-battery" />
     </section>
   </section>
 
   <section id="row-middle">
     <section class="cell cell-left">
-      
+      <text class="date" id="date-name" />
+      <text class="date" id="date-month" />
+      <text class="date" id="date-day" />
     </section>
     <section class="cell cell-middle">
       <text class="time-hours" id="hour-12" />
       <text class="time-hours" id="hour-24" />
     </section>
     <section class="cell cell-right">
-      <text class="time-minutes" id="minutes" />
+      <text class="time-minutes" id="text-minutes" />
     </section>
   </section>
 
   <section id="row-bottom">
     <section class="cell cell-left">
+      <image fill="white" x="50%-16" y="50%-32" width="32" height="32" href="icons/stat_hr_open_32px.png" />
+      <text id="text-hr" />
     </section>
     <section class="cell cell-middle">
     </section>

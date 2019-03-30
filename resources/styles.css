@@ -6,7 +6,7 @@
 .arc {
   width: 28%;
   height: 28%;
-  arc-width: 4;
+  arc-width: 5;
 }
 /* the thinner arc that's always 360 */
 .arc-thin {
@@ -66,14 +66,17 @@
 #row-top {
   x: 0;
   y: 0;
+  width: 100%;
 }
 #row-middle {
   x: 0;
   y: 33%;
+  width: 100%;
 }
 #row-bottom {
   x: 0;
   y: 66%;
+  width: 100%;
 }
 .cell-left {
   x: 4%;
@@ -89,29 +92,25 @@
 }
 
 /******************************************
- * Cell colors (9 total)
- */
-
-
-/******************************************
  * Content
  */
 
 .time-hours {
-  font-size: 28;
-  font-family: Colfax;
-  text-length: 2;
+  font-size: 30;
+  font-family: System-Bold;
+  text-length: 4;
   fill: white;
   x: 50%;
   text-anchor: middle;
 }
-#hour-12 { y: 36% }
+#hour-12 { y: 38% }
 #hour-24 { y: $+0; }
 
 .time-minutes {
   font-size: 46;
-  font-family: Colfax;
-  text-length: 2;
+  font-family: System-Bold;
+  text-length: 4;
+  letter-spacing: 1;
   x: 50%;
   y: 66%;
   fill: white;
@@ -119,13 +118,41 @@
 }
 
 #text-battery {
-  font-size: 28;
-  font-family: Colfax;
+  font-size: 20;
+  font-family: System-Bold;
   text-anchor: middle;
   text-length: 4;
-  y: 68%;
+  y: 70%;
   x: 50%;
   fill: white;
 }
 
+.date {
+  font-size: 20;
+  font-family: System-Bold;
+  text-length: 4;
+  fill: white;
+  x: 50%;
+  text-anchor: middle;
+}
 
+#date-name {
+  y: 30%;
+}
+#date-month {
+  y: 54%;
+}
+#date-day {
+  y: 80%;
+}
+
+
+#text-hr {
+  font-size: 20;
+  font-family: System-Bold;
+  text-anchor: middle;
+  text-length: 8;
+  y: 70%;
+  x: 50%;
+  fill: white;
+}
