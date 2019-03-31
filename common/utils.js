@@ -21,11 +21,12 @@ export function calcArc(current, steps) {
  */
 export function getElements(containerId) {
   const container = document.getElementById(containerId);
-  const animate = container.getElementById("animate");
+  const animateAngle = container.getElementById("animateAngle");
   const arc = container.getElementsByTagName("arc")[0];
+
   return {
     container,
-    animate,
+    animateAngle,
     arc
   };
 }

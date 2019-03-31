@@ -2,10 +2,10 @@
   
   <defs>
     <symbol id="arcGroup">
-      <arc class="arc" start-angle="0" sweep-angle="360">
-        <animate id="animate" attributeName="sweep-angle" begin="enable" from="0" to="360" dur="2" final="keep" easing="ease-in-out" />
+      <arc class="arc" start-angle="0" sweep-angle="360" arc-width="5">
+        <animate id="animateAngle" attributeName="sweep-angle" begin="enable" from="0" to="360" dur="2" final="keep" easing="ease-in-out" />
       </arc>
-      <arc class="arc-thin" start-angle="0" sweep-angle="360" />
+      <arc class="arc-thin" start-angle="0" sweep-angle="360"  arc-width="1" />
     </symbol>
   </defs>
 
@@ -29,13 +29,13 @@
     <use id="arc-minutes" class="center-right" href="#arcGroup" />
     
     <!-- bottom left -->
-    <use class="bottom-left" href="#arcGroup" />
+    <use id="arc-heart" class="bottom-left" href="#arcGroup" />
 
     <!-- bottom middle -->
-    <use class="bottom-middle" href="#arcGroup" />
+    <use id="arc-cal" class="bottom-middle" href="#arcGroup" />
 
     <!-- bottom right -->
-    <use class="bottom-right" href="#arcGroup" />
+    <use id="arc-steps" class="bottom-right" href="#arcGroup" />
 
   </mask>
 
@@ -78,12 +78,16 @@
 
   <section id="row-bottom">
     <section class="cell cell-left">
-      <image fill="white" x="50%-16" y="50%-32" width="32" height="32" href="icons/stat_hr_open_32px.png" />
-      <text id="text-hr" />
+      <image class="bottom-icon" href="icons/stat_hr_open_32px.png" />
+      <text class="bottom-text" id="text-hr" />
     </section>
     <section class="cell cell-middle">
+      <image class="bottom-icon" href="icons/stat_cals_open_32px.png" />
+      <text class="bottom-text" id="text-cal" />
     </section>
     <section class="cell cell-right">
+      <image class="bottom-icon" href="icons/stat_steps_open_32px.png" />
+      <text class="bottom-text" id="text-steps" />
     </section>
   </section>
 </svg>

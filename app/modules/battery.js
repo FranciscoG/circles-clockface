@@ -1,38 +1,28 @@
 import { battery } from "power";
-import { display } from "display";
 import document from "document";
 import * as util from "../../common/utils";
 
 // minutes arc and animation
-const batteryContainer = document.getElementById("arc-battery");
-const batteryAnim = batteryContainer.getElementById("animate");
-const batteryArc = batteryContainer.getElementsByTagName("arc")[0];
+const batteryProgress = util.getElements("arc-battery");
 
 // separate text element
-const batteryText = document.getElementById('text-battery');
-
-export default function initialize() {
-  if (display.on) {
-    setBatteryLevel();
-    battery.onchange = setBatteryLevel;
-  }
-
-  display.addEventListener("change", () => {
-    if (display.on) {
-      setBatteryLevel();
-      battery.onchange = setBatteryLevel;
-    } else {
-      battery.onchange = void(0);
-    }
-  });
-}
+const batteryText = document.getElementById("text-battery");
 
 function setBatteryLevel() {
   let levelNum = Math.floor(battery.chargeLevel);
   let level = `${levelNum}%`;
   batteryText.text = level;
-  
-  batteryArc.sweepAngle = 0;
-  batteryAnim.to = util.calcArc(levelNum, 100);
-  batteryArc.animate("enable");
+
+  batteryProgress.arc.sweepAngle = 0;
+  batteryProgress.animateAngle.to = util.calcArc(levelNum, 100);
+  batteryProgress.container.animate("enable");
+}
+
+export function start() {
+  setBatteryLevel();
+  battery.onchange = setBatteryLevel;
+}
+
+export function stop() {
+  battery.onchange = void 0;
 }

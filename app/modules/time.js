@@ -1,6 +1,5 @@
 import clock from "clock";
 import document from "document";
-import { display } from "display";
 import * as util from "../../common/utils";
 
 // Update the clock every minute
@@ -57,7 +56,7 @@ function updateTime(doAnimation = false) {
 
   if (doAnimation) {
     minutesProgress.arc.sweepAngle = 0;
-    minutesProgress.animate.to = minAngle;
+    minutesProgress.animateAngle.to = minAngle;
     minutesProgress.container.animate("enable");
   } else {
     minutesProgress.arc.sweepAngle = minAngle;
@@ -70,23 +69,12 @@ function onEachMinute(evt) {
   updateDate();
 }
 
-function init() {
+export function start() {
   today = new Date();
-
-  if (display.on) {
-    updateTime(true);
-    clock.ontick = onEachMinute;
-  }
-
-  display.addEventListener("change", () => {
-    if (display.on) {
-      today = new Date();
-      updateTime(true); // only animate once when display turns on
-      clock.ontick = onEachMinute;
-    } else {
-      clock.ontick = void(0);
-    }
-  });
+  updateTime(true); // only animate once when display turns on
+  clock.ontick = onEachMinute;
 }
 
-export default init;
+export function stop() {
+  clock.ontick = void 0;
+}

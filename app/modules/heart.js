@@ -1,21 +1,35 @@
-import { display } from "display";
 import { HeartRateSensor } from "heart-rate";
 import document from "document";
-
-const textHrElem = document.getElementById("text-hr");
-let hrm;
+import { me } from "appbit";
 
 // https://dev.fitbit.com/build/guides/sensors/heart-rate/#automatically-stopping-and-starting
-export default function initialize() {
-  hrm = new HeartRateSensor();
-  hrm.addEventListener("reading", setHRtext);
-  display.addEventListener("change", function() {
-    // Automatically stop the sensor when the screen is off to conserve battery
-    display.on ? hrm.start() : hrm.stop();
-  });
-  hrm.start();
-}
+
+let textHrElem = document.getElementById("text-hr");
+let hrm = null;
 
 function setHRtext() {
   textHrElem.text = `${hrm.heartRate}`;
+}
+
+function init() {
+  hrm = new HeartRateSensor();
+  hrm.addEventListener("reading", setHRtext);
+}
+
+if (me.permissions.granted("access_heart_rate")) {
+  init();
+} else {
+  textHrElem = "--";
+}
+
+export function start() {
+  if (hrm) {
+    hrm.start();
+  }
+}
+
+export function stop() {
+  if (hrm) {
+    hrm.stop();
+  }
 }
