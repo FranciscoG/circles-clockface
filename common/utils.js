@@ -30,3 +30,28 @@ export function getElements(containerId) {
     arc
   };
 }
+
+/**
+ * 
+ * @param {function} callback function to call at each interval
+ * @param {number} interval interval time in ms
+ */
+export class Watcher {
+  constructor(callback, interval) {
+    this.watchID = null;
+    this.interval = interval || 10000;
+    this.callback = callback;
+  }
+
+  start() {
+    if (!this.watchID) {
+      this.callback();
+      this.watchID = setInterval(this.callback, this.interval);
+    }
+  }
+
+  stop() {
+    clearInterval(this.watchID);
+    this.watchID = null;
+  }
+}

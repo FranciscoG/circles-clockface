@@ -1,1 +1,3 @@
-console.log('Hello world!');
+import * as simpleSettings from "./companion-settings";
+
+simpleSettings.initialize();
