@@ -10,16 +10,19 @@ import * as messaging from "messaging";
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
 
-let settings, onsettingschange;
+let settings;
+let onsettingschange;
+let noop = function(){};
 
-export function initialize(callback) {
-  settings = loadSettings();
+export function initialize(callback = noop) {
+  settings = loadSettings(); // from the file system
   onsettingschange = callback;
   onsettingschange(settings);
 }
 
 // Received message containing settings data
 messaging.peerSocket.addEventListener("message", function(evt) {
+  if (evt.data.command !== 'update_setting') { return; }
   settings[evt.data.key] = evt.data.value;
   onsettingschange(settings);
 })

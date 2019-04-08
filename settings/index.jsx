@@ -1,5 +1,8 @@
 function settingsComponent(props) {
-  console.log(JSON.stringify(props));
+  // console.log(JSON.stringify(props));
+
+  const { settings } = props;
+
   return (
     <Page>
       <Section
@@ -12,18 +15,28 @@ function settingsComponent(props) {
       <Section
         title={
           <Text bold align="center">
-            Weather API key
+            Weather
           </Text>
         }
       >
-        <Text align="left">
-          In order to keep this clockface 100% free users will have to signup for a free <Link source="https://openweathermap.org/api">OpenWeatherMap API key</Link>
-        </Text>
-        <TextInput
-          label="OpenWeatherMap API key"
-          settingsKey="userAPIKey"
+        <Text align="left">Temperature Unit: F° or C°</Text>
+        <Toggle
+          settingsKey="useCelsius"
+          label={`Currently set to: ${settings.useCelsius === "true" ? "C°" : "F°"}`}
         />
-        <Text>{props.settingsStorage.userAPIKey || ''}</Text>
+
+        <Text align="left">
+          In order to keep this clockface 100% free users will have to signup
+          for a free{" "}
+          <Link source="https://openweathermap.org/api">
+            OpenWeatherMap API key
+          </Link>
+        </Text>
+        <TextInput label="Enter OpenWeatherMap API key here:" settingsKey="userAPIKey" />
+
+        <Text>{settings.userAPIKey.name || ""}</Text>
+
+        {settings.weatherError && <Text>{settings.weatherError}</Text>}
       </Section>
     </Page>
   );

@@ -9,7 +9,7 @@ export function zeroPad(i) {
 }
 
 /**
- * get arc length based on total number of steps
+ * get arc length based on total number of divisions (aka steps)
  */
 export function calcArc(current, steps) {
   let angle = (360 / steps) * current;
@@ -32,7 +32,7 @@ export function getElements(containerId) {
 }
 
 /**
- * 
+ *
  * @param {function} callback function to call at each interval
  * @param {number} interval interval time in ms
  */
@@ -44,14 +44,17 @@ export class Watcher {
   }
 
   start() {
-    if (!this.watchID) {
-      this.callback();
-      this.watchID = setInterval(this.callback, this.interval);
-    }
+    // stop existing intervals, this allows to call `start` more than once in
+    // succession
+    this.stop();
+    this.callback();
+    this.watchID = setInterval(this.callback, this.interval);
   }
 
   stop() {
-    clearInterval(this.watchID);
-    this.watchID = null;
+    if (this.watchID) {
+      clearInterval(this.watchID);
+      this.watchID = null;
+    }
   }
 }
