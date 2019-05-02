@@ -5,27 +5,27 @@
 */
 import { me } from "appbit";
 import * as fs from "fs";
-import * as messaging from "messaging";
+import * as router from "../../common/message-router";
 
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
 
-let settings;
+let settings = {};
 let onsettingschange;
-let noop = function(){};
+let noop = function() {};
 
 export function initialize(callback = noop) {
   settings = loadSettings(); // from the file system
   onsettingschange = callback;
   onsettingschange(settings);
-}
 
-// Received message containing settings data
-messaging.peerSocket.addEventListener("message", function(evt) {
-  if (evt.data.command !== 'update_setting') { return; }
-  settings[evt.data.key] = evt.data.value;
-  onsettingschange(settings);
-})
+  // begin listening for setting updates
+  router.on("update_setting").then(function(data) {
+    console.log('update_setting on device', data.key, data.value);
+    settings[data.key] = data.value;
+    onsettingschange(settings);
+  });  
+}
 
 // Register for the unload event
 me.addEventListener("unload", saveSettings);

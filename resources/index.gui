@@ -40,18 +40,20 @@
   </mask>
 
   <svg mask="#mask" width="100%" height="100%">
-    <gradientRect x="0" y="0" width="100%" height="100%"
+    <gradientRect id="gradient" x="0" y="0" width="100%" height="100%"
       gradient-type="bilinear"
       gradient-x1="30" gradient-y1="30"
       gradient-x2="100%-60" gradient-y2="100%-60"
       gradient-color1="cyan"
       gradient-color2="white"
       gradient-color3="magenta"
-      gradient-color4="green" />
+      gradient-color4="pink" />
   </svg>
 
   <section id="row-top">
     <section class="cell cell-left">
+      <text class="temp" id="temp-num">---°</text>
+      <text class="temp-unit" id="temp-unit">F</text>
     </section>
     <section class="cell cell-middle">
     </section>
@@ -68,8 +70,9 @@
       <text class="date" id="date-day" />
     </section>
     <section class="cell cell-middle">
-      <text class="time-hours" id="hour-12" />
-      <text class="time-hours" id="hour-24" />
+      <text class="time-hours" id="hour-top" />
+      <line class="hours-split" />
+      <text class="time-hours" id="hour-bottom" />
     </section>
     <section class="cell cell-right">
       <text class="time-minutes" id="text-minutes" />

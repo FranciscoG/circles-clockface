@@ -101,8 +101,18 @@
   x: 50%;
   text-anchor: middle;
 }
-#hour-12 { y: 38% }
-#hour-24 { y: $+0; }
+#hour-top { y: 39% }
+
+.hours-split {
+  x1: 15%; 
+  y1: 48%; 
+  x2: 85%;
+  y2: 48%; 
+  fill: white; 
+  stroke-width: 1;
+}
+
+#hour-bottom { y: $+31%; }
 
 .time-minutes {
   font-size: 46;
@@ -159,4 +169,26 @@
   y: 70%;
   x: 50%;
   fill: white;
+}
+
+
+.temp {
+  font-size: 30;
+  font-family: System-Bold;
+  text-length: 4;
+  letter-spacing: 1;
+  x: 53%;
+  y: 63%;
+  fill: white;
+  text-anchor: middle;
+}
+
+.temp-unit {
+  font-size: 15;
+  font-family: System-Bold;
+  text-length: 2;
+  fill: white;
+  x: $-5;
+  y: 64%;
+  text-anchor: middle;
 }

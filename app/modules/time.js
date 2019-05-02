@@ -1,6 +1,7 @@
 import clock from "clock";
 import document from "document";
 import * as util from "../../common/utils";
+import * as router from "../../common/message-router";
 
 // Update the clock every minute
 clock.granularity = "minutes";
@@ -9,10 +10,11 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 // hour texts (12h and 24h both displayed in this clockface)
-const hour12elem = document.getElementById("hour-12");
-const hour24elem = document.getElementById("hour-24");
+const hourTop = document.getElementById("hour-top");
+const hourBtm = document.getElementById("hour-bottom");
 // hour progress arc
-const hourArc = document.getElementById("arc-hours");
+// const hourArc = document.getElementById("arc-hours");
+const hourProgress = util.getElements("arc-hours");
 
 // minutes text
 const minutesText = document.getElementById("text-minutes");
@@ -39,6 +41,7 @@ function updateDate() {
   dayElem.text = day;
 }
 
+
 function updateTime(doAnimation = false) {
   let hours = today.getHours();
   let mins = util.zeroPad(today.getMinutes());
@@ -46,11 +49,10 @@ function updateTime(doAnimation = false) {
   let hours_to_12 = hours % 12 || 12;
   let hours_to_24 = util.zeroPad(hours);
 
-  hour12elem.text = `${hours_to_12}`;
-  hour24elem.text = `${hours_to_24}`;
+  hourTop.text = `${hours_to_12}`;
+  hourBtm.text = `${hours_to_24}`;
+  
   minutesText.text = `${mins}`;
-
-  hourArc.sweepAngle = util.calcArc(hours_to_12, 12);
   
   let minAngle = util.calcArc(mins, 60);
 
@@ -58,8 +60,13 @@ function updateTime(doAnimation = false) {
     minutesProgress.arc.sweepAngle = 0;
     minutesProgress.animateAngle.to = minAngle;
     minutesProgress.container.animate("enable");
+
+    hourProgress.arc.sweepAngle = 0;
+    hourProgress.animateAngle.to = util.calcArc(hours_to_12, 12);
+    hourProgress.container.animate("enable");
   } else {
     minutesProgress.arc.sweepAngle = minAngle;
+    hourProgress.arc.sweepAngle = util.calcArc(hours_to_12, 12);
   }
 }
 

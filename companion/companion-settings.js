@@ -1,5 +1,5 @@
-import * as messaging from "messaging";
 import { settingsStorage } from "settings";
+import * as router from "../common/message-router";
 
 function format(key, val) {
   return {
@@ -10,11 +10,7 @@ function format(key, val) {
 }
 
 function sendSettingData(data) {
-  if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
-    messaging.peerSocket.send(data);
-  } else {
-    console.log("No peerSocket connection");
-  }
+  router.send(data.command, data);
 }
 
 function sendValue(key, val) {

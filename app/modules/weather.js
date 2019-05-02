@@ -1,37 +1,29 @@
+import document from "document";
 import * as messaging from "messaging";
 import { Watcher } from "../../common/utils";
+import * as router from "../../common/message-router";
+
+const temp = document.getElementById("temp-num");
+const unit = document.getElementById("temp-unit");
 
 // Display the weather data received from the companion
 function updateUI(data) {
   // @TODO finish this part
   console.log("weather response: " + JSON.stringify(data));
+
+  temp.text = `${Math.round(data.main.temp)}°`;
+  unit.text = "F";
 }
 
 // send message to the companion to make OpenWeatherMap api request
 function getWeather() {
-  if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
-    // Send a command to the companion
-    messaging.peerSocket.send({
-      command: "weather"
-    });
-  }
+  // tell the companion app to begin polling weather
+  router.send("get_weather");
 }
 
 // Listen for the onopen event
 messaging.peerSocket.onopen = getWeather;
-
-// Listen for messages from the companion
-messaging.peerSocket.onmessage = function(evt) {
-  if (evt.data && evt.data.command === "weather_data") {
-    updateUI(evt.data);
-  }
-};
-
-// Listen for the onerror event
-messaging.peerSocket.onerror = function(err) {
-  // Handle any errors
-  console.log("Connection error: " + err.code + " - " + err.message);
-};
+router.on("weather_data").then(updateUI);
 
 const weather = new Watcher(getWeather, 60 * 60 * 1000);
 
