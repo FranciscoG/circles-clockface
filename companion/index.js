@@ -17,15 +17,18 @@ const api = new OpenWeatherAPI();
 try {
   let keyVal = JSON.parse(key);
   api.apiKey = keyVal.name;
-} catch (e) {}
+} catch (e) {
+  console.log(e.message);
+}
 
 simpleSettings.init(function(data) {
   // update api key if it changes
   if (data.key === "userAPIKey") {
     try {
-      let keyVal = JSON.parse(data.value);
-      api.apiKey = keyVal.name;
-    } catch (e) {}
+      api.apiKey = data.value.name;
+    } catch (e) {
+      console.log(e.message);
+    }
   }
 
   if (data.key === "useCelsius") {
@@ -60,33 +63,3 @@ router.on("get_weather").then(function() {
       settingsStorage.setItem("weatherError", err.message);
     });
 });
-
-// Listen for messages from the device
-// messaging.peerSocket.onmessage = function(evt) {
-//   if (!evt.data) {
-//     return;
-//   }
-//   const { command } = evt.data;
-
-//   if (command === "weather") {
-//     getPosition()
-//       .then(function(position) {
-//         api.useCoords(position.coords.latitude, position.coords.longitude);
-//         api
-//           .getWeather()
-//           .then(returnWeatherData)
-//           .catch(function(err) {
-//             settingsStorage.setItem("weatherError", err.message);
-//           });
-//       })
-//       .catch(function(err) {
-//         settingsStorage.setItem("weatherError", err.message);
-//       });
-//   }
-// };
-
-// // Listen for the onerror event
-// messaging.peerSocket.onerror = function(err) {
-//   // Handle any errors
-//   console.log("Connection error: " + err.code + " - " + err.message);
-// };

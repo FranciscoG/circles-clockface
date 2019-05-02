@@ -4,47 +4,52 @@
 
  /* the main arc that grows with progress */
 .arc {
-  width: 28%;
-  height: 28%;
+  width: 30%;
+  height: 30%;
 }
 /* the thinner arc that's always 360 */
 .arc-thin {
-  width: 28%;
-  height: 28%;
+  width: 30%;
+  height: 30%;
 }
 
+/*
+  .{row}-{column}
+  the Y in each row should match
+  the X in each column should match
+*/
 .top-left {
-  x: 4%;
-  y: 4%;
+  x: 2%;
+  y: 2%;
 }
 .top-middle {
-  x: 36%;
-  y: 4%;
+  x: 35%;
+  y: 2%;
 }
 .top-right {
-  x: 68%;
-  y: 4%;
+  x: 67%;
+  y: 2%;
 } 
 
 .center-left {
-  x: 4%;
-  y: 36%;
+  x: 2%;
+  y: 35%;
 }
 .center-middle {
-  x: 36%;
-  y: 36%;
+  x: 35%;
+  y: 35%;
 }
 .center-right {
   x: 68%;
-  y: 36%;
+  y: 35%;
 } 
 
 .bottom-left {
-  x: 4%;
+  x: 2%;
   y: 68%;
 }
 .bottom-middle {
-  x: 36%;
+  x: 35%;
   y: 68%;
 }
 .bottom-right {
@@ -56,9 +61,10 @@
  * grid
  */
 
+ /* should be same as the .arc at the top*/
 .cell {
-  width: 28%;
-  height: 28%;
+  width: 30%;
+  height: 30%;
 }
 
 #row-top {
@@ -76,17 +82,18 @@
   y: 66%;
   width: 100%;
 }
+
 .cell-left {
-  x: 4%;
-  y: 4%;
+  x: 2%;
+  y: 2%;
 }
 .cell-middle {
-  x: $+4%;
-  y: 4%;
+  x: $+2%;
+  y: 2%;
 }
 .cell-right {
-  x: $+4%;
-  y: 4%;
+  x: $+2%;
+  y: 2%;
 }
 
 /******************************************
